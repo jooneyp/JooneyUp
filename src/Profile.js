@@ -16,7 +16,7 @@ function Profile(isAnonymous) {
       <img src={Anonymous} alt="profiles" className="anonymous_img"/>
     </div>
   </div>
-) } else {//익명이 아닐 경우는 일단은 빈 div
+) } else {
   return <div/>;
   }
 }
