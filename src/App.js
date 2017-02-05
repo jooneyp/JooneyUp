@@ -4,6 +4,7 @@ import './App.css';
 import Editor from './Editor'
 import FirebaseDao from './FirebaseDao'
 import config from './config'
+import CardList from './CardList'
 
 class App extends Component {
   constructor() {
@@ -34,12 +35,11 @@ class App extends Component {
     return lis;
   }
   componentWillMount() {
-    this.dao.list(25).on('value',(dataSnapshots)=>{
+    this.dao.list(25,(articles)=>{
       var items = [];
-      dataSnapshots.forEach(function(dataSnapshot){
-        var item = dataSnapshot.val();
-        item['key'] = dataSnapshot.key;
-        // console.log(dataSnapshot.val());
+      articles.forEach(function(article){
+        var item = article.val();
+        item['key'] = article.key;
         items.push(item);
       })
       if(items && items.length>0){
@@ -59,9 +59,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
         </div>
         <Editor submit={this.submit} isAnonymous={this.isAnonymous}/>
-        <ul>
-        {this.getArticles()}
-        </ul>
+        <CardList articles={this.state.articles}/>
       </div>
     );
   }
