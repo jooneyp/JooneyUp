@@ -3,6 +3,7 @@ import React ,{Component} from 'react';
 import './PopCard.css';
 //Action 을 불러옵니다.
 import {userArticles,loadArticles} from './actions/Article'
+import firebase from 'firebase'
 //redux에서 connect 함수를 불러옵니다.
 import {connect} from 'react-redux';
 
